@@ -1,0 +1,28 @@
+{
+  "name": "fullstackopen-part3-backendbuild",
+  "version": "1.0.0",
+  "description": "The backend for part2 phonebook frontend",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amutha37/fullstackopen-part3-backendbuild.git"
+  },
+  "author": "Amutha Muhunthan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Amutha37/fullstackopen-part3-backendbuild/issues"
+  },
+  "homepage": "https://github.com/Amutha37/fullstackopen-part3-backendbuild#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
+}
