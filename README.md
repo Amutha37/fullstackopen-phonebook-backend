@@ -1,3 +1,8 @@
+
+# Front-end repository is located at: https://github.com/Amutha37/fullstackopen/tree/main/part2/phonebook
+
+## Start of the backend creation 
+
 1. npm init
    {
    // ...
@@ -93,12 +98,17 @@ i) On root directory
 * copy the build to back end root repo
 * 
 
+Front-end repository is located at: https://github.com/Amutha37/fullstackopen/tree/main/part2/phonebook
+ 
 ### Link to heroku app backend
  Full stack open part 3
  
 https://quiet-dawn-80146.herokuapp.com/
 
 ![Screen Shot 2021-09-30 at 2 43 38 pm](https://user-images.githubusercontent.com/67087939/135388754-a2832d41-c003-4687-b260-b61473c78ea5.png)
+
+
+
 
 
 ### Express backend 
