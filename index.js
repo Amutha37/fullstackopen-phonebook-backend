@@ -1,11 +1,13 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
+app.use(cors());
 var morgan = require("morgan");
+
+morgan.token("body", (req, res) => JSON.stringify(req.body));
 
 //  jason-parser to access data to dd new notes in the request body in JSON format.
 app.use(express.json());
-
-morgan.token("body", (req, res) => JSON.stringify(req.body));
 
 app.use(
   morgan(":method :url :status :req[Content-Length] - :response-time ms :body")
@@ -14,21 +16,33 @@ app.use(
 let persons = [
   {
     id: 1,
+    name: "Ashaa George",
+    date: "2019-05-30T17:30:31.098Z",
+    number: "0678946633",
+  },
+  {
+    id: 2,
+    name: "Kishen George",
+    date: "2019-05-30T17:30:31.098Z",
+    number: "0678945533",
+  },
+  {
+    id: 3,
     name: "Tamana Aurom",
     number: "040-123456",
   },
   {
-    id: 2,
+    id: 4,
     name: "Amanda Steve",
     number: "39-44-5323523",
   },
   {
-    id: 3,
+    id: 5,
     name: "Ryan Saimon",
     number: "12-43-234345",
   },
   {
-    id: 4,
+    id: 6,
     name: "Mary Poppendieck",
     number: "39-23-6423122",
   },
