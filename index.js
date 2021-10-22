@@ -3,9 +3,16 @@ const app = express();
 const cors = require("cors");
 app.use(cors());
 
-app.use(express.static("build"));
+// mongoDB
+require("dotenv").config();
+const Person = require("./models/person");
+const mongoose = require("mongoose");
 
-var morgan = require("morgan");
+// const url = process.env.MONGODB_URI;
+// mongoose.connect(url);
+
+app.use(express.static("build"));
+const morgan = require("morgan");
 
 morgan.token("body", (req, res) => JSON.stringify(req.body));
 
@@ -16,44 +23,49 @@ app.use(
   morgan(":method :url :status :req[Content-Length] - :response-time ms :body")
 );
 
-let persons = [
-  {
-    id: 1,
-    name: "Ashaa George",
-    date: "2019-05-30T17:30:31.098Z",
-    number: "0678946633",
-  },
-  {
-    id: 2,
-    name: "Kishen George",
-    date: "2019-05-30T17:30:31.098Z",
-    number: "0678945533",
-  },
-  {
-    id: 3,
-    name: "Tamana Aurom",
-    number: "040-123456",
-  },
-  {
-    id: 4,
-    name: "Amanda Steve",
-    number: "39-44-5323523",
-  },
-  {
-    id: 5,
-    name: "Ryan Saimon",
-    number: "12-43-234345",
-  },
-  {
-    id: 6,
-    name: "Mary Poppendieck",
-    number: "39-23-6423122",
-  },
-];
+// let persons = [
+//   {
+//     id: 1,
+//     name: "Ashaa George",
+//     date: "2019-05-30T17:30:31.098Z",
+//     number: "0678946633",
+//   },
+//   {
+//     id: 2,
+//     name: "Kishen George",
+//     date: "2019-05-30T17:30:31.098Z",
+//     number: "0678945533",
+//   },
+//   {
+//     id: 3,
+//     name: "Tamana Aurom",
+//     number: "040-123456",
+//   },
+//   {
+//     id: 4,
+//     name: "Amanda Steve",
+//     number: "39-44-5323523",
+//   },
+//   {
+//     id: 5,
+//     name: "Ryan Saimon",
+//     number: "12-43-234345",
+//   },
+//   {
+//     id: 6,
+//     name: "Mary Poppendieck",
+//     number: "39-23-6423122",
+//   },
+// ];
 
 // fetch all the data
 app.get("/api/persons", (request, response) => {
-  response.json(persons);
+  Person.find({}).then((persons) => {
+    response.json(persons);
+  });
+
+  //  before mongoDB
+  // response.json(persons);
 });
 
 // fetch all the data for summary infomation
@@ -70,14 +82,20 @@ app.get("/info", (request, response) => {
 
 // check for individual id to load from the url to code to filter
 app.get("/api/persons/:id", (request, response) => {
-  const id = Number(request.params.id);
-  const person = persons.find((person) => person.id === id);
-
-  if (person) {
+  // with mongoDB
+  Person.findById(request.params.id).then((person) => {
     response.json(person);
-  } else {
-    response.status(404).end();
-  }
+  });
+
+  // BEFORE mongoDB
+  // const id = Number(request.params.id);
+  // const person = persons.find((person) => person.id === id);
+
+  // if (person) {
+  //   response.json(person);
+  // } else {
+  //   response.status(404).end();
+  // }
 });
 
 // deleting data
@@ -89,57 +107,67 @@ app.delete("/api/persons/:id", (request, response) => {
 });
 
 // add new person
+// const generateId = () => Math.floor(Math.random() * 100);
 
-const generateId = () => Math.floor(Math.random() * 100);
-
-app.post("/api/persons", (request, response) => {
+app.post("/api/people", (request, response) => {
   const body = request.body;
-
-  if (!body.content) {
-    return response.status(400).json({
-      error: "content missing",
-    });
+  // with mongoDB
+  if (body.content === undefined) {
+    return response.status(400).json({ error: "content missing" });
   }
 
-  let autoid = generateId();
-  let result = preventDoubleid(autoid);
+  const person = new Person({
+    name: body.name,
+    number: body.number,
+  });
 
-  if (result) {
-    return response.status(302).json({
-      error: "This id already exist.",
-    });
-  }
-  const person = {
-    content: body.content,
-    id: autoid,
-    name: "Ada Lovelace",
-    number: "",
-    // name: "Ada Lovelace",
-    // number: "39-44-553622523",
-  };
+  person.save().then((savedPerson) => {
+    response.json(savedPerson).catch((error) => next(error));
+  });
 
-  if (!person.name) {
-    return response.status(204).json({
-      error: "Name missing",
-    });
-  }
-  if (!person.number) {
-    return response.status(204).json({
-      error: "Phone number missing",
-    });
-  }
+  // if (!body.content) {
+  //   return response.status(400).json({
+  //     error: "content missing",
+  //   });
+  // }
 
-  let chekname = nam(person.name);
+  // let autoid = generateId();
+  // let result = preventDoubleid(autoid);
 
-  if (chekname) {
-    return response.status(302).json({
-      error: "This name already exist.",
-    });
-  }
+  // if (result) {
+  //   return response.status(302).json({
+  //     error: "This id already exist.",
+  //   });
+  // }
+  // const person = {
+  //   content: body.content,
+  //   id: autoid,
+  //   name: "Ada Lovelace",
+  //   number: "",
+  // };
 
-  persons = persons.concat(person);
-  console.log(persons.id);
-  response.json(persons);
+  // if (!person.name) {
+  //   return response.status(204).json({
+  //     error: "Name missing",
+  //   });
+  // }
+  // if (!person.number) {
+  //   return response.status(204).json({
+  //     error: "Phone number missing",
+  //   });
+  // }
+
+  // let chekname = nam(person.name);
+
+  // if (chekname) {
+  //   return response.status(302).json({
+  //     error: "This name already exist.",
+  //   });
+  // }
+
+  // persons = persons.concat(person);
+  // console.log(persons.id);
+  // response.json(persons);
 });
 
 // checking status git
@@ -158,7 +186,8 @@ const unknownEndpoint = (request, response) => {
 
 app.use(unknownEndpoint);
 
-const PORT = process.env.PORT || 3001;
+// const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
