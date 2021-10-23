@@ -94,3 +94,15 @@ After deploy we can now create production build or a version of the application 
 This can be don't in the frontend root with the command 'npm run build'. 
 
 The process for production build is listed in the frontend repository fullstackopen/part2/phonebook
+
+#### 3.11 is production build which is described in the frontend repository 
+     fullstackopen/part2/phonebook
+
+# 3.12 Create database using command line.
+
+In this section we will create MongoDB Atlas cluster allows access.
+
+Com
+
+
+
