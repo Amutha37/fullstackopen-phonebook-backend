@@ -66,25 +66,31 @@
 ### Exercises 3.9.-3.11. Connect backend to front end
 
 6. npm install cors
+   *add this line of code in index.js
    const cors = require('cors')
+   app.use(cors()) 
 
-app.use(cors()) 7. Add node_modules .gitignore with the following contents
-(front end should work)
+7. Add node_modules in '.gitignore'
+(before deploying)
 
 # 3.10 Deploy app to backend Heroku
 
 i) On root directory
-
+   * Read heroku documentation for deployment 
 > heroku create
 > git push heroku main
 > npm run dev
 
-- npm install express
-
 * If there is any error display log to view them.
 
-# heroku logs -t
+> heroku logs -t
 
-# Heroku backend app
+# Heroku backend app address link :
 
 `https://quiet-dawn-80146.herokuapp.com/api/persons`
+
+After deploy we can now create production build or a version of the application which is optimised for production.
+
+This can be don't in the frontend root with the command 'npm run build'. 
+
+The process for production build is listed in the frontend repository fullstackopen/part2/phonebook
