@@ -1,3 +1,4 @@
+# Initial set up up for starting the app 
 1. npm init
    {
    // ...
@@ -19,6 +20,8 @@
    },
    // ..
    }
+   
+### Installing logger 
 4. npm install morgan
 
 5. npm run dev
@@ -105,4 +108,5 @@ In this section we will create MongoDB Atlas cluster allows access.
 Com
 
 
+![Screen Shot 2021-10-26 at 2 07 29 pm](https://user-images.githubusercontent.com/67087939/138802291-aa66b5db-2b1d-4c17-960d-15e44160fba9.png)
 
