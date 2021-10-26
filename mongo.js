@@ -61,9 +61,9 @@ if (process.argv.length === 3) {
 }
 
 // // search only specific database
-// Note.find({ important: true }).then((result) => {
-//   result.forEach((note) => {
-//     console.log(note);
-//   });
-//   mongoose.connection.close();
-// });
+Person.find({ important: true }).then((result) => {
+  result.forEach((person) => {
+    console.log(person);
+  });
+  mongoose.connection.close();
+});

@@ -1,9 +1,4 @@
-# GET  http://localhost:3001/api/persons
+GET  http://localhost:3001/api/persons/
 
-POST  http://localhost:3001/api/persons
-content-type: application/json
 
-{
-    "name": "Albert Einstein",
-    "number": "12-43-20455731"
-}
+
