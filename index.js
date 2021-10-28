@@ -25,6 +25,8 @@ const errorHandler = (error, request, response, next) => {
 
   if (error.name === "CastError") {
     return response.status(400).send({ error: "malformatted id" });
+  } else if (error.name === "check entry field") {
+    return response.status(400).json({ error: error.message });
   }
   next(error);
 };
@@ -80,22 +82,17 @@ app.get("/api/persons", (request, response) => {
 
 // fetch all the data for summary infomation
 app.get("/info", (request, response, next) => {
-  const datalength = api / persons.length;
-  console.log(persons);
-  const datetime = new Date();
-  Person.collection
-    .countDocuments()
-    .then((result) => {
-      response.send(`<p>Phonebook has info on ${result} people.</p>
-            <p>${datetime}</p>`);
+  Person.countDocuments({})
+    .then((count) => {
+      const documentInfo =
+        `<p>Phonebook has info for ${count} people</p>` +
+        `<p>${new Date()}</p>`;
+      response.send(documentInfo);
     })
-    .catch((error) => next(error));
-  // response
-  //   .send(
-  //     `<h5>Phonebook has info for ${datalength} people</h5>
-  //   <h6>${datetime}</h6>`
-  //   )
-  //   .catch((error) => next(error));
+    .catch((error) => {
+      console.error(error);
+      next(error);
+    });
 });
 
 // Display single phonebook entry information and if not found set and error status code.
@@ -112,23 +109,9 @@ app.get("/api/persons/:id", (request, response) => {
       }
     })
     .catch((error) => next(error));
-  // .then((person) => {
-  //   response.json(person);
-  // });
-
-  // BEFORE mongoDB
-  // const id = Number(request.params.id);
-  // const person = persons.find((person) => person.id === id);
-
-  // if (person) {
-  //   response.json(person);
-  // } else {
-  //   response.status(404).end();
-  // }
 });
 
 // add new person
-// const generateId = () => Math.floor(Math.random() * 100);
 
 app.post("/api/persons", (request, response, next) => {
   const body = request.body;
@@ -148,54 +131,8 @@ app.post("/api/persons", (request, response, next) => {
     .then((savedPerson) => {
       return savedPerson.toJSON();
     })
+    .then((newPerson) => response.json(newPerson))
     .catch((error) => next(error));
-  // person.save().then((savedPerson) => {
-  //   response.json(savedPerson).catch((error) => next(error));
-  // });
-
-  // if (!body.content) {
-  //   return response.status(400).json({
-  //     error: "content missing",
-  //   });
-  // }
-
-  // let autoid = generateId();
-  // let result = preventDoubleid(autoid);
-
-  // if (result) {
-  //   return response.status(302).json({
-  //     error: "This id already exist.",
-  //   });
-  // }
-  // const person = {
-  //   content: body.content,
-  //   id: autoid,
-  //   name: "Ada Lovelace",
-  //   number: "",
-  // };
-
-  // if (!person.name) {
-  //   return response.status(204).json({
-  //     error: "Name missing",
-  //   });
-  // }
-  // if (!person.number) {
-  //   return response.status(204).json({
-  //     error: "Phone number missing",
-  //   });
-  // }
-
-  // let chekname = nam(person.name);
-
-  // if (chekname) {
-  //   return response.status(302).json({
-  //     error: "This name already exist.",
-  //   });
-  // }
-
-  // persons = persons.concat(person);
-  // console.log(persons.id);
-  // response.json(persons);
 });
 
 // update database
