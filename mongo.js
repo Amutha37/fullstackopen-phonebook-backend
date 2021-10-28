@@ -14,16 +14,6 @@ const password = process.argv[2];
 
 const url = `mongodb+srv://fullstack_amutha:${password}@cluster0.eqxje.mongodb.net/phonebook-app?retryWrites=true&w=majority`;
 
-// async function run() {
-//   console.log(mongoose.version);
-
-//   const start = Date.now();
-//   const opts = { useNewUrlParser: true, connectTimeoutMS: 1000 };
-//   await mongoose.connect(url, opts).catch((error) => {
-//     console.log(`Caught "${error.message}" after ${Date.now() - start}`);
-//   });
-// }
-
 mongoose.connect(url);
 
 // GENERATE NEW NOTE DATA IN mongoDB database
@@ -59,8 +49,7 @@ if (process.argv.length === 3) {
     process.exit(1);
   });
 }
-
-// // search only specific database
+// search only specific database
 Person.find({ important: true }).then((result) => {
   result.forEach((person) => {
     console.log(person);

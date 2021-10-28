@@ -1,4 +1,5 @@
-# Initial set up up for starting the app 
+# Initial set up up for starting the app
+
 1. npm init
    {
    // ...
@@ -20,8 +21,9 @@
    },
    // ..
    }
-   
-### Installing logger 
+
+### Installing logger
+
 4. npm install morgan
 
 5. npm run dev
@@ -69,22 +71,24 @@
 ### Exercises 3.9.-3.11. Connect backend to front end
 
 6. npm install cors
-   *add this line of code in index.js
+   \*add this line of code in index.js
    const cors = require('cors')
-   app.use(cors()) 
+   app.use(cors())
 
 7. Add node_modules in '.gitignore'
-(before deploying)
+   (before deploying)
 
 # 3.10 Deploy app to backend Heroku
 
 i) On root directory
-   * Read heroku documentation for deployment 
-> heroku create
-> git push heroku main
-> npm run dev
 
-* If there is any error display log to view them.
+- Read heroku documentation for deployment
+
+  > heroku create
+  > git push heroku main
+  > npm run dev
+
+- If there is any error display log to view them.
 
 > heroku logs -t
 
@@ -94,19 +98,52 @@ i) On root directory
 
 After deploy we can now create production build or a version of the application which is optimised for production.
 
-This can be don't in the frontend root with the command 'npm run build'. 
+This can be don't in the frontend root with the command 'npm run build'.
 
 The process for production build is listed in the frontend repository fullstackopen/part2/phonebook
 
-#### 3.11 is production build which is described in the frontend repository 
+#### 3.11 is production build which is described in the frontend repository
+
      fullstackopen/part2/phonebook
 
 # 3.12 Create database using command line.
 
 In this section we will create MongoDB Atlas cluster allows access.
 
-Com
+1. Create a mongoDB database for phone book the model and save data is created mongo.js.
 
+- Use command line arguments to pass the property to create a new data collection.
+
+example passing 3 parameter on command line : > `node mongo.js yourpassword Anna 040-1234556`
+
+- Use them as command-line arguments
+
+const password = process.argv[2];
+const person = new Person({
+name: process.argv[3],
+number: process.argv[4],
+});
+
+- This new entry data will be saved to the database.
+
+If the `phonebook-app` database does not exit the mongoDB will create the database and create a document collection.
+
+const url = `mongodb+srv://fullstack_amutha:${password}@cluster0.eqxje.mongodb.net/phonebook-app?retryWrites=true&w=majority`;
+
+3.13 - 3.14 Create, update and fetch all database from the database mongoDB.
+
+3.13 Write mongoDB models `new mongoose.Schema ` to configure database configuration into its own module.
+
+1. Test the front end fetch all data from backend mongoDB.
+
+3.14 Change the backend so the new contact is added to the database.
+
+3.15 Change the functionality to delete the contact in database.
+
+3.16 Create a error handler middleware to handle error for invalid id.
+
+3.17 Change the functionality to change and update existing contact in the database.
+
+3.18 Change and update the handling of the `api/persons/:id` and `/info`. The should be handle by fetching the information form the database.Verify this works directly in browser, Postman or VS Code REST client.
 
 ![Screen Shot 2021-10-26 at 2 07 29 pm](https://user-images.githubusercontent.com/67087939/138802291-aa66b5db-2b1d-4c17-960d-15e44160fba9.png)
-
