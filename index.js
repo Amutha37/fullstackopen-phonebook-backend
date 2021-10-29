@@ -20,55 +20,9 @@ const morgan = require("morgan");
 
 morgan.token("body", (req, res) => JSON.stringify(req.body));
 
-const errorHandler = (error, request, response, next) => {
-  console.error(error.message);
-
-  if (error.name === "CastError") {
-    return response.status(400).send({ error: "malformatted id" });
-  } else if (error.name === "validation Error") {
-    return response.status(400).json({ error: error.message });
-  }
-  next(error);
-};
-
 app.use(
   morgan(":method :url :status :req[Content-Length] - :response-time ms :body")
 );
-
-// let persons = [
-//   {
-//     id: 1,
-//     name: "Ashaa George",
-//     date: "2019-05-30T17:30:31.098Z",
-//     number: "0678946633",
-//   },
-//   {
-//     id: 2,
-//     name: "Kishen George",
-//     date: "2019-05-30T17:30:31.098Z",
-//     number: "0678945533",
-//   },
-//   {
-//     id: 3,
-//     name: "Tamana Aurom",
-//     number: "040-123456",
-//   },
-//   {
-//     id: 4,
-//     name: "Amanda Steve",
-//     number: "39-44-5323523",
-//   },
-//   {
-//     id: 5,
-//     name: "Ryan Saimon",
-//     number: "12-43-234345",
-//   },
-//   {
-//     id: 6,
-//     name: "Mary Poppendieck",
-//     number: "39-23-6423122",
-//   },
-// ];
 
 // fetch all the data
 app.get("/api/persons", (request, response) => {
@@ -173,6 +127,16 @@ app.delete("/api/persons/:id", (request, response) => {
 // const nam = (n) => {
 //   return persons.find(({ name }) => name.includes(n));
 // };
+const errorHandler = (error, request, response, next) => {
+  console.error(error.message);
+
+  if (error.name === "CastError") {
+    return response.status(400).send({ error: "malformatted id" });
+  } else if (error.name === "validation Error") {
+    return response.status(400).json({ error: error.message });
+  }
+  next(error);
+};
 
 const unknownEndpoint = (request, response) => {
   response.status(404).send({ error: "unknown endpoint" });
