@@ -282,7 +282,7 @@ a. Change the indentation level to 2 spaces.
 Final outcome screenshot.
 
 Frontend  
-![Screen Shot 2021-11-02 at 10 08 12 am](https://user-images.githubusercontent.com/67087939/139753688-34772c9d-b4c5-4ee0-b164-9ae36bdbacd9.png)
+![Screen Shot 2021-11-02 at 10 10 41 am](https://user-images.githubusercontent.com/67087939/139753872-45c8c202-00fc-4525-b8ff-273bb80e14a3.png)
 
 
 Backend
