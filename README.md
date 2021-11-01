@@ -278,3 +278,19 @@ a. Change the indentation level to 2 spaces.
 - It is easier to check for this error using VS Code ESlint plugin. It will underline style violations in the red line.
 
 \*\*\*FIX all errors.
+
+Final outcome screenshot.
+
+Frontend  
+![Screen Shot 2021-11-02 at 10 08 12 am](https://user-images.githubusercontent.com/67087939/139753688-34772c9d-b4c5-4ee0-b164-9ae36bdbacd9.png)
+
+
+Backend
+
+![Screen Shot 2021-11-02 at 10 07 28 am](https://user-images.githubusercontent.com/67087939/139753659-f3d6ed25-a05d-440d-aa1d-8699abc6a058.png)
+
+Heroku app 
+
+![Screen Shot 2021-11-02 at 10 04 21 am](https://user-images.githubusercontent.com/67087939/139753454-5fe3ad0d-4321-4901-8908-afd3f7a70e76.png)
+
+
