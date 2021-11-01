@@ -49,7 +49,7 @@
 `Get http://localhost:3001/api/persons/3`.
 .Folder name 'request' is implemented to run REST
 
-### 3.5 HTTP POST
+### 3.5 POST Create and add new contact using HTTP POST.
 
 .Add new note.
 .Auto generate header content-type: with the help of json-parser / app.use(express.json()).
@@ -57,25 +57,34 @@
 
 .Create hard code data object to add new note.
 
-### 3.6 Error handling for blank entry and double entry.
-
-### 3.5 HTTP POST
+### 3.6 Error handling when creating new contact.
 
 .Validation check to display error message if name or number is missing.
 . Prevent double entry.
 
-### 3.6 Configure Morgan logger to show HTTP POST data log.
+## 3.7 Install morgan libraries 
+
+-  After installing morgan connfigure the middleware by using `app.use` command in the backend index.js file.
+
+  * Reference git hub : `https://github.com/expressjs/morgan`
+  * 
+### 3.8 Configure Morgan logger to show HTTP POST data log.
 
 ![Screen Shot 2021-09-27 at 11 25 26 am](https://user-images.githubusercontent.com/67087939/134832408-7e5b1672-f61a-4d11-844f-5200f8a49596.png)
 
 ### Exercises 3.9.-3.11. Connect backend to front end
 
-6. npm install cors
+### 3.9 Connect frontend with backend 
+
+ - Make changes to base URL in frontend so it can read the 
+ - Install Cross-origin resource sharing (CORS) is a mechanism.
+
+> npm install cors
    \*add this line of code in index.js
+   
    const cors = require('cors')
    app.use(cors())
-
-7. Add node_modules in '.gitignore'
+ * Add node_modules in '.gitignore'
    (before deploying)
 
 # 3.10 Deploy app to backend Heroku
@@ -130,25 +139,25 @@ If the `phonebook-app` database does not exit the mongoDB will create the databa
 
 const url = `mongodb+srv://fullstack_amutha:${password}@cluster0.eqxje.mongodb.net/phonebook-app?retryWrites=true&w=majority`;
 
-3.13 - 3.14 Create, update and fetch all database from the database mongoDB.
+# 3.13 - 3.14 Create, update and fetch all database from the database mongoDB.
 
-3.13 Write mongoDB models `new mongoose.Schema ` to configure database configuration into its own module.
+### 3.13 Write mongoDB models `new mongoose.Schema ` to configure database configuration into its own module.
 
 1. Test the front end fetch all data from backend mongoDB.
 
-3.14 Change the backend so the new contact is added to the database.
+### 3.14 Change the backend so the new contact is added to the database.
 
-3.15 Change the functionality to delete the contact in database.
+### 3.15 Change the functionality to delete the contact in database.
 
-3.16 Create a error handler middleware to handle error for invalid id.
+### 3.16 Create a error handler middleware to handle error for invalid id.
 
-3.17 Change the functionality to change and update existing contact in the database.
+### 3.17 Change the functionality to change and update existing contact in the database.
 
-3.18 Change and update the handling of the `api/persons/:id` and `/info`. The should be handle by fetching the information form the database.Verify this works directly in browser, Postman or VS Code REST client.
+### 3.18 Change and update the handling of the `api/persons/:id` and `/info`. The should be handle by fetching the information form the database.Verify this works directly in browser, Postman or VS Code REST client.
 
 ![Screen Shot 2021-10-26 at 2 07 29 pm](https://user-images.githubusercontent.com/67087939/138802291-aa66b5db-2b1d-4c17-960d-15e44160fba9.png)
 
-3.19 Phonebook database validation
+### 3.19 Phonebook database validation
 
 - Currently the code validate for double name entry, but to create them directly with Postman or the VS Code REST client.
 
@@ -159,9 +168,9 @@ Moongoose does not offer the build-in validator so double data entry and this ca
 Documentation link for this installation can be found in :
 `https://github.com/blakehaswell/mongoose-unique-validator#readme`
 
-3.20 Catch error at frontend to display some form of error message when a validation error occur. This can be achived by catch error.
+### 3.20 Catch error at frontend to display some form of error message when a validation error occur. This can be achived by catch error.
 
-3.21 Deploying the database backend to production
+### 3.21 Deploying the database backend to production
 
 This is a new "full stack" version. Create a new production build of the frontend and copy it to the backend repository. Make sure the appplication workd on local address `http://localhost:30001/`
 
@@ -170,7 +179,7 @@ This is a new "full stack" version. Create a new production build of the fronten
 
 * Make sure to verify that everything works as it should.
 
-# Lint OR linter
+### 3.22  Lint OR linter
 
 Defination in short : Tools for performing static analysis of source code. It detects and flags error in programming languages, including stylistic error. This will give our code a consistant style code.
 
