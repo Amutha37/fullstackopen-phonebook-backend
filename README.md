@@ -6,15 +6,8 @@
    Make changes to package.json adding `start` script. This allow us to run from command line : 
   
    >  npm script `npm start` instead of node command  `node index.js` .
-      
-   {
-   // ...
-   "scripts": {
-   "start": "node index.js",
-   "test": "echo \"Error: no test specified\" && exit 1"
-   },
-   // ...
-   }
+      ![Screen Shot 2021-11-02 at 9 56 40 am](https://user-images.githubusercontent.com/67087939/139752814-ed4cf214-d4e1-4999-8b53-d339dbb5acb5.png)
+
    
    run test the index.js file with any test code.
 
@@ -40,19 +33,12 @@
   
   > `npm install --save-dev nodemon`
   
-  We can start the application with command line execution `node_modules/.bin/nodemon index.js`. This is long and not so pleasant. We can use the script to defile the the execution of the nodemon.
-  -  
-   Make changes to the script 
+  We can start the application with command line execution `node_modules/.bin/nodemon index.js`. 
+  This is long   and not so pleasant. We can use the script to defile the the execution of the nodemon.
   
-   {
-   // ..
-   "scripts": {
-   "start": "node index.js",
-   "dev": "nodemon index.js",
-   "test": "echo \"Error: no test specified\" && exit 1"
-   },
-   // ..
-   }
+  Make changes to the script 
+  ![Screen Shot 2021-11-02 at 9 56 13 am](https://user-images.githubusercontent.com/67087939/139752775-af768fdd-0758-4223-8584-8f7dec73454d.png)
+
    
    
    > `npm run dev`
