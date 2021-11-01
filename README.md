@@ -1,6 +1,12 @@
 # Initial set up up for starting the app
 
-1. npm init
+> (indicates command line execution)
+
+1. `npm init`
+   * Make changes to package.json adding `start` script. This allow us to run from command line : 
+  
+   >  npm script `npm start` instead of node command  `node index.js` .
+      
    {
    // ...
    "scripts": {
@@ -9,9 +15,39 @@
    },
    // ...
    }
+   
+   * run test and index.js file with any test code.
 
-2. npm install express
-3. npm install --save-dev nodemon
+# Phonebook backend Exercises 3..2 -3.6
+
+### 3.1 List hardcoded item of using base URL
+
+- Continue setup the backend with Node express to ease server side development. This is how we interacting with database and the front end browser. 
+
+
+  >  `npm install express`
+  
+- (Dependencies will be added to the package.json. The source code for this dependency is install to the    node_modules.We can update the dependencies of the project when the any of the patch, minor and major version express change with `npm update`)
+
+ When we work on this project on another computer we can instll the up-to-date dependencies ot the project defined in package.json with the command :
+ 
+  > `npm install`
+
+  * The express module can be now imported in the code file for use. 
+
+ #### Installing Nodemon 
+ 
+  - Unlike React app where the browser automatically reloaded after changes made in the source code, this project index.js file has to be shut down with CTL+C to restart the application so we can see the changes. 
+
+  - Nodemon watch the files in the directory in which nodemon was started at the script file for any changes and  Nodemon will automatically restart your node application. The browser need to be reload.
+
+  
+  > `npm install --save-dev nodemon`
+  
+  - We can start the application with command line exercution `node_modules/.bin/nodemon index.js`. This is long and not so pleasant. We can use the script to defile the the exercution of the nodemon.
+  -  
+  * Make changes to the script 
+  
    {
    // ..
    "scripts": {
@@ -21,18 +57,47 @@
    },
    // ..
    }
+   
+   
+   > `npm run dev`
 
-### Installing logger
+ #### RESTfull API 
+ 
+ The source code phonebook person data is now called resources in RESTfull thinking. Let's create a the resource's associated unique URL address. 
+ 
+  EXAMPLE :
+  The root URL of our service will be www.example.com/api
+  Defining a unique address of a person will be www.example.com/api/person/10.
+  
+* REST refers to as a uniform interface, which means a consistent way of defining interface that makes it posible for system   to co-operate. More information about RESTfull API can be found in the web documentation. 
 
-4. npm install morgan
+We can defined the execution of different operation on resources by the HTTP verb :
 
-5. npm run dev
 
-# Phonebook backend Exercises 3..2 -3.6
+URL	       verb	      functionality 
 
-### 3.1 List item of using base URL
+persons/10	  GET	      fetches a single resource
+persons	     GET	      fetches all resources in the collection
+persons	     POST	   creates a new resource based on the request data
+persons/10   DELETE	   removes the identified resource
+persons/10	  PUT	      replaces the entire identified resource with the request data
+persons/10	  PATCH	   replaces a part of the identified resource with the request data
 
-.In this exercise I have to implement the return of hardcoded list of phonebook entris at the URL `http://localhost:3001/api/persons` using Node express.
+
+ Use Postman or VS Code REST client to test operation. 
+ If you are using VS Code REST install the extention, create file `.rest` use the operation to test. 
+ 
+ 
+# 3.1 - 3.6 Implementing the REST API using node express using hard coded object data to work on initialy. 
+          The initial step of the backend is all described in the steps above. 
+
+* This backend is recomended to be dedicated into a new git repository. 
+
+
+### 3.1 In this exercise I have to implement the return of hardcoded list of phonebook entris at the URL 
+
+
+`http://localhost:3001/api/persons` using Node express.
 
 ### 3.2 List the information from of the api/person length and times.
 
@@ -62,7 +127,9 @@
 .Validation check to display error message if name or number is missing.
 . Prevent double entry.
 
-## 3.7 Install morgan libraries 
+### 3.7 Installing morgan logger as a middleware using the function - request, response and next
+
+   > `npm install morgan`
 
 -  After installing morgan connfigure the middleware by using `app.use` command in the backend index.js file.
 
@@ -79,7 +146,7 @@
  - Make changes to base URL in frontend so it can read the 
  - Install Cross-origin resource sharing (CORS) is a mechanism.
 
-> npm install cors
+> `npm install cors`
    \*add this line of code in index.js
    
    const cors = require('cors')
@@ -93,19 +160,19 @@ i) On root directory
 
 - Read heroku documentation for deployment
 
-  > heroku create
-  > git push heroku main
-  > npm run dev
+  > `heroku create`
+  > `git push heroku main`
+  > `npm run dev`
 
 - If there is any error display log to view them.
 
-> heroku logs -t
+> `heroku logs -t`
 
 # Heroku backend app address link :
 
 `https://quiet-dawn-80146.herokuapp.com/api/persons`
 
-After deploy we can now create production build or a version of the application which is optimised for production.
+After deploying  we can now create production build or a version of the application which is optimised for production.
 
 This can be don't in the frontend root with the command 'npm run build'.
 
@@ -189,11 +256,11 @@ In the JavaScript universe, the current leading tool for static analysis aka. "l
 
 1. Install ESlint as a development dependency to the backend project with the command:
 
-> npm install eslint --save-dev
+> `npm install eslint --save-dev`
 
 2. Now we can initialize a default ESlint configuration with command :
 
-> node_modules/.bin/eslint --init
+> `node_modules/.bin/eslint --init`
 
 - Answer all the questions.
 
@@ -223,15 +290,15 @@ a. Change the indentation level is 2 spaces.
 // ...
 }
 
-5. Now the `npm run lint` command will check every file in the project.
+5.  Now the `npm run lint` command will check every file in the project.
 
-- We do not want build directory get checked.
+*  We do not want build directory get checked.
 
-5. Create an `.eslintignore` file in the project's root
+6. Create an `.eslintignore` file in the project's root
 
-6. Leave the build folder in the `.eslintingnore`.
+7. Leave the build folder in the `.eslintingnore`.
 
-> npm run lint
+> `npm run lint`
 
 - It is easier to check for this error using VS Code ESlint plugin. It will underline style violations in red line.
 
