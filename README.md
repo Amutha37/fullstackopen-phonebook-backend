@@ -73,15 +73,7 @@
 
 We can defined the execution of different operation on resources by the HTTP verb :
 
-
-URL	       verb	      functionality 
-
-persons/10	  GET	      fetches a single resource
-persons	     GET	      fetches all resources in the collection
-persons	     POST	   creates a new resource based on the request data
-persons/10   DELETE	   removes the identified resource
-persons/10	  PUT	      replaces the entire identified resource with the request data
-persons/10	  PATCH	   replaces a part of the identified resource with the request data
+![Screen Shot 2021-11-02 at 9 23 57 am](https://user-images.githubusercontent.com/67087939/139749996-66edff42-7a11-499f-9d25-5dbebbd1949a.png)
 
 
  Use Postman or VS Code REST client to test operation. 
