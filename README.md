@@ -188,6 +188,9 @@ In the JavaScript universe, the current leading tool for static analysis aka. "l
 
 - Answer all the questions.
 
+![Screen Shot 2021-11-01 at 11 44 17 am](https://user-images.githubusercontent.com/67087939/139627841-d748cb0a-ce4d-4bf3-96d1-bbcabff9c4bd.png)
+
+
 - The configuration will be saved in the `.eslintrc.js` file:
 
 a. Change the indentation level is 2 spaces.
@@ -195,6 +198,8 @@ a. Change the indentation level is 2 spaces.
 3. Inspecting and validating a file like index.js can be done with the following command.
 
 > node_modules/.bin/eslint index.js
+
+
 
 4. Recommended to create a separate npm script for linting.
 
