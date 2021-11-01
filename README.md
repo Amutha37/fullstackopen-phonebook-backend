@@ -172,4 +172,53 @@ This is a new "full stack" version. Create a new production build of the fronten
 
 # Lint OR linter
 
-Defination in short : Tools for performing static analysis of source code. It detects and flags error in programming languages, including stylistic error.
+Defination in short : Tools for performing static analysis of source code. It detects and flags error in programming languages, including stylistic error. This will give our code a consistant style code.
+
+Other in compiled statically typed languages like Java, IDEs like NetBeans can point out errors in the code.
+
+In the JavaScript universe, the current leading tool for static analysis aka. "linting" is ESlint.
+
+1. Install ESlint as a development dependency to the backend project with the command:
+
+> npm install eslint --save-dev
+
+2. Now we can initialize a default ESlint configuration with command :
+
+> node_modules/.bin/eslint --init
+
+- Answer all the questions.
+
+- The configuration will be saved in the `.eslintrc.js` file:
+
+a. Change the indentation level is 2 spaces.
+
+3. Inspecting and validating a file like index.js can be done with the following command.
+
+> node_modules/.bin/eslint index.js
+
+4. Recommended to create a separate npm script for linting.
+
+{
+// ...
+"scripts": {
+"start": "node index.js",
+"dev": "nodemon index.js",
+// ...
+"lint": "eslint ."
+},
+// ...
+}
+
+5. Now the `npm run lint` command will check every file in the project.
+
+- We do not want build directory get checked.
+
+5. Create an `.eslintignore` file in the project's root
+
+6. Leave the build folder in the `.eslintingnore`.
+
+> npm run lint
+
+- It is easier to check for this error using VS Code ESlint plugin. It will underline style violations in red line.
+
+\*\*\*FIX all errors.
