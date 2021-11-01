@@ -147,3 +147,29 @@ const url = `mongodb+srv://fullstack_amutha:${password}@cluster0.eqxje.mongodb.n
 3.18 Change and update the handling of the `api/persons/:id` and `/info`. The should be handle by fetching the information form the database.Verify this works directly in browser, Postman or VS Code REST client.
 
 ![Screen Shot 2021-10-26 at 2 07 29 pm](https://user-images.githubusercontent.com/67087939/138802291-aa66b5db-2b1d-4c17-960d-15e44160fba9.png)
+
+3.19 Phonebook database validation
+
+- Currently the code validate for double name entry, but to create them directly with Postman or the VS Code REST client.
+
+Moongoose does not offer the build-in validator so double data entry and this can be done by installing mongoose-unique-validator plugin.
+
+> npm install --save mongoose-unique-validator
+
+Documentation link for this installation can be found in :
+`https://github.com/blakehaswell/mongoose-unique-validator#readme`
+
+3.20 Catch error at frontend to display some form of error message when a validation error occur. This can be achived by catch error.
+
+3.21 Deploying the database backend to production
+
+This is a new "full stack" version. Create a new production build of the frontend and copy it to the backend repository. Make sure the appplication workd on local address `http://localhost:30001/`
+
+- Push the new changes to Heroku
+  > `git push heroku main`
+
+* Make sure to verify that everything works as it should.
+
+# Lint OR linter
+
+Defination in short : Tools for performing static analysis of source code. It detects and flags error in programming languages, including stylistic error.
