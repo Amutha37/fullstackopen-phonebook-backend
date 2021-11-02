@@ -1,111 +1,153 @@
-# Initial set up up for starting the app
+# Initial setup up for starting the app
 
-1. npm init
-   {
-   // ...
-   "scripts": {
-   "start": "node index.js",
-   "test": "echo \"Error: no test specified\" && exit 1"
-   },
-   // ...
-   }
+ ( > indicates command line execution)
 
-2. npm install express
-3. npm install --save-dev nodemon
-   {
-   // ..
-   "scripts": {
-   "start": "node index.js",
-   "dev": "nodemon index.js",
-   "test": "echo \"Error: no test specified\" && exit 1"
-   },
-   // ..
-   }
+1. `npm init`
+   Make changes to package.json adding `start` script. This allow us to run from command line : 
+  
+   >  npm script `npm start` instead of node command  `node index.js` .
+      ![Screen Shot 2021-11-02 at 9 56 40 am](https://user-images.githubusercontent.com/67087939/139752814-ed4cf214-d4e1-4999-8b53-d339dbb5acb5.png)
 
-### Installing logger
+   
+   run test the index.js file with any test code.
 
-4. npm install morgan
+- Continue setting up the backend with Node express to ease server side development. This is how we interact with database and the front end browser. 
 
-5. npm run dev
 
-# Phonebook backend Exercises 3..2 -3.6
+  >  `npm install express`
+  
+ (Dependencies will be added to the package.json. The source code for this dependency is install to the    node_modules.We can update the dependencies of the project when the any of the patch, minor and major version express change with `npm update`)
 
-### 3.1 List item of using base URL
+ When we work on this project on another computer we can install the up-to-date dependencies ot the project defined in package.json with the command :
+ 
+  > `npm install`
 
-.In this exercise I have to implement the return of hardcoded list of phonebook entris at the URL `http://localhost:3001/api/persons` using Node express.
+  The express module can be now imported in the code file for use. 
 
-### 3.2 List the information from of the api/person length and times.
+ #### Installing Nodemon 
+ 
+   Unlike React app where the browser automatically reloaded after changes made in the source code, this project index.js file has to be shut down with CTL+C to restart the application so we can see the changes. 
 
-.Expending the above exercise to implement the return summary of information "Phonebook has info for 4 people" and time of processing the request in the URL `http://localhost:3001/api/info`.
+   Nodemon watches the files in the directory in which nodemon was started at the script file for any changes and  Nodemon will automatically restart your node application. The browser needs to be reloaded.
 
-### 3.3 Search single item
+  
+  > `npm install --save-dev nodemon`
+  
+  We can start the application with command line execution `node_modules/.bin/nodemon index.js`. 
+  This is long   and not so pleasant. We can use the script to defile the the execution of the nodemon.
+  
+  Make changes to the script 
+  ![Screen Shot 2021-11-02 at 9 56 13 am](https://user-images.githubusercontent.com/67087939/139752775-af768fdd-0758-4223-8584-8f7dec73454d.png)
+
+   
+   
+   > `npm run dev`
+
+ #### RESTful API 
+ 
+ The source code phonebook person data is now called resources in RESTful thinking. Let's create a resource's associated unique URL address. 
+ 
+  EXAMPLE :
+  The root URL of our service will be www.example.com/api
+  Defining a unique address of a person will be www.example.com/api/person/10.
+  
+ REST refers to a uniform interface, which means a consistent way of defining an interface that makes it possible for the system   to cooperate. More information about RESTful API can be found in the web documentation. 
+
+We can defined the execution of different operation on resources by the HTTP verb :
+
+![Screenshot 2021-11-02 at 9 23 57 am](https://user-images.githubusercontent.com/67087939/139749996-66edff42-7a11-499f-9d25-5dbebbd1949a.png)
+
+
+ Use Postman or VS Code REST client to test operation. 
+ If you are using VS Code REST install the extension, create file `.rest` use the operation to test. 
+ 
+ 
+## 3.1 - 3.6 Implementing the REST API using node express using hard coded object data to work on initially. 
+The initial step of the backend is all described in the steps above. 
+
+ This backend is recommended to be dedicated into a new git repository. 
+
+
+#### 3.1 In this exercise I have to implement the return of hardcoded list of phonebook entries at the URL 
+
+
+`http://localhost:3001/api/persons` using Node express.
+
+#### 3.2 List the information from the api/person length and times.
+
+.Expanding the above exercise to implement the return summary of information "Phonebook has info for 4 people" and time of processing the request in the URL `http://localhost:3001/api/info`.
+
+#### 3.3 Search single item
 
 .Display information for a single phonebook entry exp.` URL http://localhost:3001/api/persons/5`. using unique id.
 
-### 3.4 HTTP DELETE
+#### 3.4 HTTP DELETE
 
 .Delete data using id parameter from URL
 .To test the functionality if the data been delete run "send request" on the URL
 `Get http://localhost:3001/api/persons/3`.
 .Folder name 'request' is implemented to run REST
 
-### 3.5 POST Create and add new contact using HTTP POST.
+#### 3.5 POST Create and add new contact using HTTP POST.
 
 .Add new note.
-.Auto generate header content-type: with the help of json-parser / app.use(express.json()).
-.Retrive data from body property of the request object.
+.Auto generated header content-type: with the help of json-parser / app.use(express.json()).
+.Retrieve data from body property of the request object.
 
-.Create hard code data object to add new note.
+.Create hard code data object to add new contact person.
 
-### 3.6 Error handling when creating new contact.
+#### 3.6 Error handling when creating new contact.
 
 .Validation check to display error message if name or number is missing.
 . Prevent double entry.
 
-## 3.7 Install morgan libraries 
+#### 3.7 Installing morgan logger as a middleware using the function - request, response and next
 
--  After installing morgan connfigure the middleware by using `app.use` command in the backend index.js file.
+   > `npm install morgan`
 
-  * Reference git hub : `https://github.com/expressjs/morgan`
-  * 
-### 3.8 Configure Morgan logger to show HTTP POST data log.
+ After installing morgan configure the middleware by using `app.use` command in the backend index.js file.
 
-![Screen Shot 2021-09-27 at 11 25 26 am](https://user-images.githubusercontent.com/67087939/134832408-7e5b1672-f61a-4d11-844f-5200f8a49596.png)
+  * Reference github : `https://github.com/expressjs/morgan`
+  
+#### 3.8 Configure Morgan logger to show HTTP POST data log.
 
-### Exercises 3.9.-3.11. Connect backend to front end
+![Screenshot 2021-09-27 at 11 25 26 am](https://user-images.githubusercontent.com/67087939/134832408-7e5b1672-f61a-4d11-844f-5200f8a49596.png)
 
-### 3.9 Connect frontend with backend 
+## Exercises 3.9.-3.11. Connect backend to front end
 
- - Make changes to base URL in frontend so it can read the 
- - Install Cross-origin resource sharing (CORS) is a mechanism.
+#### 3.9 Connect frontend with backend 
 
-> npm install cors
+ Make changes to base URL in frontend so it can read the 
+  Install Cross-origin resource sharing (CORS) is a mechanism.
+
+> `npm install cors`
    \*add this line of code in index.js
    
    const cors = require('cors')
    app.use(cors())
- * Add node_modules in '.gitignore'
-   (before deploying)
 
-# 3.10 Deploy app to backend Heroku
+  Add node_modules in '.gitignore'
+ 	  (before deploying)
 
-i) On root directory
+#### 3.10 Deploy app to backend Heroku
 
-- Read heroku documentation for deployment
+ On root directory
 
-  > heroku create
-  > git push heroku main
-  > npm run dev
+ Read heroku documentation for deployment
+
+  > `heroku create`
+  > `git push heroku main`
+  > `npm run dev`
 
 - If there is any error display log to view them.
 
-> heroku logs -t
+> `heroku logs -t`
 
-# Heroku backend app address link :
+## Heroku backend app address link :
 
 `https://quiet-dawn-80146.herokuapp.com/api/persons`
 
-After deploy we can now create production build or a version of the application which is optimised for production.
+After deploying  we can now create a production build or a version of the application which is optimised for production.
 
 This can be don't in the frontend root with the command 'npm run build'.
 
@@ -113,11 +155,11 @@ The process for production build is listed in the frontend repository fullstacko
 
 #### 3.11 is production build which is described in the frontend repository
 
-     fullstackopen/part2/phonebook
+ -  fullstackopen/part2/phonebook
 
-# 3.12 Create database using command line.
+#### 3.12 Create a database using the command line.
 
-In this section we will create MongoDB Atlas cluster allows access.
+In this section we will create a MongoDB Atlas cluster that allows access.
 
 1. Create a mongoDB database for phone book the model and save data is created mongo.js.
 
@@ -133,46 +175,46 @@ name: process.argv[3],
 number: process.argv[4],
 });
 
-- This new entry data will be saved to the database.
+-This new entry data will be saved to the database.
 
-If the `phonebook-app` database does not exit the mongoDB will create the database and create a document collection.
+If the `phonebook-app` database does not exist the mongoDB will create the database and create a document collection.
 
 const url = `mongodb+srv://fullstack_amutha:${password}@cluster0.eqxje.mongodb.net/phonebook-app?retryWrites=true&w=majority`;
 
-# 3.13 - 3.14 Create, update and fetch all database from the database mongoDB.
+## 3.13 - 3.14 Create, update and fetch all databases from the database mongoDB.
 
-### 3.13 Write mongoDB models `new mongoose.Schema ` to configure database configuration into its own module.
+#### 3.13 Write mongoDB models `new mongoose.Schema ` to configure database configuration into its own module.
 
 1. Test the front end fetch all data from backend mongoDB.
 
-### 3.14 Change the backend so the new contact is added to the database.
+#### 3.14 Change the backend so the new contact is added to the database.
 
-### 3.15 Change the functionality to delete the contact in database.
+#### 3.15 Change the functionality to delete the contact in the database.
 
-### 3.16 Create a error handler middleware to handle error for invalid id.
+#### 3.16 Create an error handler middleware to handle errors for invalid id.
 
-### 3.17 Change the functionality to change and update existing contact in the database.
+#### 3.17 Change the functionality to change and update existing contacts in the database.
 
-### 3.18 Change and update the handling of the `api/persons/:id` and `/info`. The should be handle by fetching the information form the database.Verify this works directly in browser, Postman or VS Code REST client.
+#### 3.18 Change and update the handling of the `api/persons/:id` and `/info`. This should be handled by fetching the information from the database.Verify this works directly in browser, Postman or VS Code REST client.
 
-![Screen Shot 2021-10-26 at 2 07 29 pm](https://user-images.githubusercontent.com/67087939/138802291-aa66b5db-2b1d-4c17-960d-15e44160fba9.png)
+![Screenshot 2021-10-26 at 2 07 29 pm](https://user-images.githubusercontent.com/67087939/138802291-aa66b5db-2b1d-4c17-960d-15e44160fba9.png)
 
-### 3.19 Phonebook database validation
+#### 3.19 Phonebook database validation
 
-- Currently the code validate for double name entry, but to create them directly with Postman or the VS Code REST client.
+- Currently the code validates for double name entries, but to create them directly with Postman or the VS Code REST client.
 
-Moongoose does not offer the build-in validator so double data entry and this can be done by installing mongoose-unique-validator plugin.
+Mongoose does not offer the build-in validator so double data entry and this can be done by installing mongoose-unique-validator plugin.
 
 > npm install --save mongoose-unique-validator
 
 Documentation link for this installation can be found in :
 `https://github.com/blakehaswell/mongoose-unique-validator#readme`
 
-### 3.20 Catch error at frontend to display some form of error message when a validation error occur. This can be achived by catch error.
+### 3.20 Catch error at frontend to display some form of error message when a validation error occurs. This can be achieved by catching errors.
 
 ### 3.21 Deploying the database backend to production
 
-This is a new "full stack" version. Create a new production build of the frontend and copy it to the backend repository. Make sure the appplication workd on local address `http://localhost:30001/`
+This is a new "full stack" version. Create a new production build of the frontend and copy it to the backend repository. Make sure the application works on local address `http://localhost:30001/`
 
 - Push the new changes to Heroku
   > `git push heroku main`
@@ -181,28 +223,28 @@ This is a new "full stack" version. Create a new production build of the fronten
 
 ### 3.22  Lint OR linter
 
-Defination in short : Tools for performing static analysis of source code. It detects and flags error in programming languages, including stylistic error. This will give our code a consistant style code.
+Definition in short : Tools for performing static analysis of source code. It detects and flags errors in programming languages, including stylistic error. This will give our code a consistent style code.
 
-Other in compiled statically typed languages like Java, IDEs like NetBeans can point out errors in the code.
+In compiled statically typed languages like Java, IDEs like NetBeans can point out errors in the code.
 
 In the JavaScript universe, the current leading tool for static analysis aka. "linting" is ESlint.
 
 1. Install ESlint as a development dependency to the backend project with the command:
 
-> npm install eslint --save-dev
+> `npm install eslint --save-dev`
 
 2. Now we can initialize a default ESlint configuration with command :
 
-> node_modules/.bin/eslint --init
+> `node_modules/.bin/eslint --init`
 
 - Answer all the questions.
 
-![Screen Shot 2021-11-01 at 11 44 17 am](https://user-images.githubusercontent.com/67087939/139627841-d748cb0a-ce4d-4bf3-96d1-bbcabff9c4bd.png)
+![Screenshot 2021-11-01 at 11 44 17 am](https://user-images.githubusercontent.com/67087939/139627841-d748cb0a-ce4d-4bf3-96d1-bbcabff9c4bd.png)
 
 
 - The configuration will be saved in the `.eslintrc.js` file:
 
-a. Change the indentation level is 2 spaces.
+a. Change the indentation level to 2 spaces.
 
 3. Inspecting and validating a file like index.js can be done with the following command.
 
@@ -223,16 +265,32 @@ a. Change the indentation level is 2 spaces.
 // ...
 }
 
-5. Now the `npm run lint` command will check every file in the project.
+5.  Now the `npm run lint` command will check every file in the project.
 
-- We do not want build directory get checked.
+*  We do not want the build directory to get checked.
 
-5. Create an `.eslintignore` file in the project's root
+6. Create an `.eslintignore` file in the project's root
 
-6. Leave the build folder in the `.eslintingnore`.
+7. Leave the build folder in the `.eslintignore`.
 
-> npm run lint
+> `npm run lint`
 
-- It is easier to check for this error using VS Code ESlint plugin. It will underline style violations in red line.
+- It is easier to check for this error using VS Code ESlint plugin. It will underline style violations in the red line.
 
 \*\*\*FIX all errors.
+
+Final outcome screenshot.
+
+Frontend  
+![Screen Shot 2021-11-02 at 10 10 41 am](https://user-images.githubusercontent.com/67087939/139753872-45c8c202-00fc-4525-b8ff-273bb80e14a3.png)
+
+
+Backend
+
+![Screen Shot 2021-11-02 at 10 07 28 am](https://user-images.githubusercontent.com/67087939/139753659-f3d6ed25-a05d-440d-aa1d-8699abc6a058.png)
+
+Heroku app 
+
+![Screen Shot 2021-11-02 at 10 04 21 am](https://user-images.githubusercontent.com/67087939/139753454-5fe3ad0d-4321-4901-8908-afd3f7a70e76.png)
+
+
