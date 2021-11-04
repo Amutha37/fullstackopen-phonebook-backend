@@ -107,20 +107,26 @@ After installing morgan configure the middleware by using `app.use` command in t
 
 ## Exercises 3.9.-3.11. Connect backend to front end
 
-#### 3.9 Connect frontend with backend
+#### 3.9 Connect frontend with backend using Cross-Origin Resource Sharing (CORS) 
 
-Make changes to base URL in frontend so it can read the
-Install Cross-origin resource sharing (CORS) is a mechanism.
 
-> `npm install cors` > \*add this line of code in index.js
+In your backend repository, install cors with the command : -
+
+> `npm install cors` 
+
+ * add this line of code in index.js
 
 const cors = require('cors')
 app.use(cors())
 
+The front end should work fetching data from the backend.
+
+#### 3.10 Deploy app to backend Heroku
+
 Add node_modules in '.gitignore'
 (before deploying)
 
-#### 3.10 Deploy app to backend Heroku
+
 
 On root directory
 
