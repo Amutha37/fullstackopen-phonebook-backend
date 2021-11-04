@@ -156,7 +156,9 @@ The process for production build is listed in the frontend repository fullstacko
 
 In this section we will create a MongoDB Atlas cluster that allows access.
 
-1. Create a mongoDB database for phone book the model and save data is created mongo.js.
+> `npm install mongoose`
+
+1. Create a mongoDB database for phone book model, save and created mongo.js.
 
 - Use command line arguments to pass the property to create a new data collection.
 
